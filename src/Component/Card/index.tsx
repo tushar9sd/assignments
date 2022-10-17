@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import { Button, Card, CloseButton, Col, Row } from "react-bootstrap";
+import { Button, Card, Col, Row } from "react-bootstrap";
 import { Trash } from "react-bootstrap-icons";
 import styled from "styled-components";
 
@@ -35,18 +35,18 @@ const CardBox = styled.div`
 interface Props {
   image: string;
   title: string;
-  description: string;
-  closeIcon?: boolean;
-  onDelete: () => void;
-  onCardClick: () => void;
+  description?: string;
+  onCardClick?: () => void;
+  handleAddToCart?: any;
+  addedToCart?: any;
 }
 const ShoppingCard: FC<Props> = ({
   image,
   title,
   description,
-  closeIcon = false,
-  onDelete,
   onCardClick,
+  handleAddToCart,
+  addedToCart
 }) => {
   return (
     <CardBox onClick={onCardClick}>
@@ -57,20 +57,20 @@ const ShoppingCard: FC<Props> = ({
         <Col md="2">
           <Card.Title className="title">{title}</Card.Title>
         </Col>
-        <Col md="5">
+        <Col md="6">
           <Card.Text className="description">{description}</Card.Text>
         </Col>
         <Col md="3" className="gap-3">
-          <Button variant="primary">Add to Cart</Button>
+          <Button variant="primary" onClick={handleAddToCart} disabled={addedToCart}>Add to Cart</Button>
           <Button variant="warning">Wishlist</Button>
         </Col>
-        <Col md="1">
+        {/* <Col md="1">
           {closeIcon && (
             <div className="close" onClick={onDelete}>
               <Trash />
             </div>
           )}
-        </Col>
+        </Col> */}
       </Row>
     </CardBox>
   );
