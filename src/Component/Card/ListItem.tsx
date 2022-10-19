@@ -1,6 +1,8 @@
 import React, { FC } from "react";
 import { Button, ButtonGroup, Card, Col, Row } from "react-bootstrap";
+import { Pencil, Trash } from "react-bootstrap-icons";
 import styled from "styled-components";
+import { H3, Para } from "../Typography";
 
 const CardBox = styled.div`
   margin: 12px 0;
@@ -20,9 +22,14 @@ const CardBox = styled.div`
 
   .close {
     cursor: pointer;
-    svg {
-      font-size: 24px;
+    .deleteicon {
+      font-size: 20px;
       fill: red;
+    }
+    .editicon {
+      font-size: 20px;
+      fill:#0d6efd;
+      margin-right:10px;
     }
   }
   .row div {
@@ -35,23 +42,27 @@ interface Props {
   image: string;
   title: string;
   description?: string;
+  price?:number;
   onCardClick?: () => void;
   handleAddToCart?: any;
   handleWishlistbutton?: any;
   removeWishlistbutton?: any;
   addedToCart?: any;
   isWishList?: any;
+  onDelete:any;
 }
-const ShoppingCard: FC<Props> = ({
+const ListItem: FC<Props> = ({
   image,
   title,
   description,
+  price,
   onCardClick,
   handleAddToCart,
   addedToCart,
   handleWishlistbutton,
   removeWishlistbutton,
   isWishList,
+  onDelete
 }) => {
   return (
     <CardBox onClick={onCardClick}>
@@ -60,12 +71,15 @@ const ShoppingCard: FC<Props> = ({
           <Card.Img variant="top" src={image} className="image" />
         </Col>
         <Col md="2">
-          <Card.Title className="title">{title}</Card.Title>
+          <H3 text={title} />
         </Col>
-        <Col md="5">
-          <Card.Text className="description">{description}</Card.Text>
+        <Col md="3">
+          <Para text={description} />
         </Col>
-        <Col md="4" className="gap-3">
+        <Col md="1">
+          <H3 text={`$${price}`} />
+        </Col>
+        <Col md="4" className="gap-1">
           <Button
             variant="primary"
             onClick={handleAddToCart}
@@ -89,9 +103,15 @@ const ShoppingCard: FC<Props> = ({
             )}
           </ButtonGroup>
         </Col>
+        <Col md="1">
+        <div className="close" onClick={onDelete}>
+             {/* <Pencil className="editicon" /> */}
+              <Trash className="deleteicon" />
+            </div>
+            </Col>
       </Row>
     </CardBox>
   );
 };
 
-export default ShoppingCard;
+export default ListItem;

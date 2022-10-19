@@ -4,10 +4,10 @@ import styled from "styled-components";
 
 const ModalBox = styled(Modal)`
   .body {
-    padding: 30px 40px;
+    padding: 20px 40px;
   }
   .header {
-    padding: 10px 40px;
+    padding: 15px 40px;
   }
   .image {
     margin: 0 0 20px 0;
@@ -25,9 +25,7 @@ interface Props {
     handleClose: () => void;
   }
 
-const ItemDetails: FC<Props> = ({handleClose, show, data}) => {
-
-
+const ItemDescriptionModal: FC<Props> = ({handleClose, show, data}) => {
   return (
     <ModalBox
       show={show}
@@ -46,6 +44,9 @@ const ItemDetails: FC<Props> = ({handleClose, show, data}) => {
           Item Name: <span>{data?.title}</span>
         </h6>
         <h6>
+          Item Price: <span>{data?.price}</span>
+        </h6>
+        <h6>
           Item Description: <span>{data?.description}</span>
         </h6>
       </Modal.Body>
@@ -53,4 +54,4 @@ const ItemDetails: FC<Props> = ({handleClose, show, data}) => {
   );
 };
 
-export default ItemDetails;
+export default ItemDescriptionModal;

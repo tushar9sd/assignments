@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import { Button, Card, Col, Row } from "react-bootstrap";
+import {Card } from "react-bootstrap";
 import { Trash } from "react-bootstrap-icons";
 import styled from "styled-components";
 
